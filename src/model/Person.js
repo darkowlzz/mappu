@@ -1,6 +1,9 @@
 class PersonController {
-  constructor($scope) {
+  constructor($scope, $modal) {
     this.scope = $scope;
+    this.modal = $modal;
+
+    this.scope.animationsEnabled = true;
     this.signedIn = false;
     this.username = 'anonymous';
 
@@ -10,9 +13,11 @@ class PersonController {
       console.log('signing in');
       let profile = googleUser.getBasicProfile();
       let auth_token = googleUser.getAuthResponse();
+      /*
       console.log(profile.getId());
       console.log(profile.getName());
       console.log(auth_token);
+      */
       that.scope.$apply(function() {
         that.signedIn = true;
         that.username = profile.getName();
@@ -20,7 +25,8 @@ class PersonController {
     }
 
     let map = L.map('map', {zoomControl: false}).setView([12.9729, 77.5882], 13);
-    /*
+    /**
+     * ==== mapquest tiles ====
     L.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         subdomains: ['otile1','otile2','otile3','otile4']
         }).addTo(map);
@@ -43,8 +49,17 @@ class PersonController {
     });
   }
 
+  open() {
+    let modalInstance = this.modal.open({
+      animation: true,
+      templateUrl: 'modalView.html',
+      controller: 'ModalInstanceCtrl',
+      size: 'lg'
+    })
+  }
+
 }
 
-PersonController.$inject = ['$scope'];
+PersonController.$inject = ['$scope', '$modal'];
 
 export { PersonController };
