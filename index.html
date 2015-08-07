@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app="Mappu">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--
+    <meta name="google-signin-client_id" content="529707350625-ft3cm1c42nvj74s3kt8fgo4n3qoro347.apps.googleusercontent.com">
+    -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mappu</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body ng-controller="personController as person">
+
+    <div class="container-fluid">
+      <div ng-hide="person.signedIn" class="g-signin2" data-onsuccess="onSignIn"></div>
+      <!--
+      <button ng-show="person.signedIn" class="btn btn-default btn-sm" ng-click="person.signOut();">Sign Out</button>
+      -->
+
+      <div ng-show="person.signedIn">
+        <p>Hello {{person.username}}</p>
+
+
+      </div>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.1.js"></script>
+    <script src="//apis.google.com/js/platform.js" async defer></script>
+    <script src="./dist/app.js"> </script>
+  </body>
+</html>
