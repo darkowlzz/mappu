@@ -1,0 +1,29 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+html, body, #map, #container {
+  height: 100%;
+}
+
+#search-box {
+  position: absolute;
+  z-index: 3;
+  width: 60%;
+  left: 50%;
+  top: 3em;
+  margin-left: -30%;
+}
+
+.fly {
+  position: absolute;
+  z-index: 3;
+  left: 5%;
+  top: 2em;
+}
+
+#location {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
