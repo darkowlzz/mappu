@@ -1,5 +1,5 @@
 class ModalInstanceController {
-  constructor($scope, $modalInstance) {
+  constructor($scope, $modalInstance, map) {
     this.scope = $scope;
     this.modalInstance = $modalInstance;
 
@@ -11,6 +11,7 @@ class ModalInstanceController {
     let that = this;
 
     this.scope.btn1Click = function () {
+      map.locate();
       that.modalInstance.close();
     };
 
@@ -21,6 +22,6 @@ class ModalInstanceController {
 
 }
 
-ModalInstanceController.$inject = ['$scope', '$modalInstance'];
+ModalInstanceController.$inject = ['$scope', '$modalInstance', 'map'];
 
 export { ModalInstanceController };
