@@ -26,7 +26,7 @@ function MapService () {
     // Automatically locate.
     locate: function locate (zoom = 16) {
       console.log('locating...');
-      map.locate({setView: false, maxZoom: zoom});
+      map.locate({setView: true, maxZoom: zoom});
     }
   }
 }

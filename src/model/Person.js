@@ -38,11 +38,11 @@ class PersonController {
     });
   }
 
-  open() {
+  getLocation() {
     let modalInstance = this.modal.open({
       animation: true,
       templateUrl: 'modalView.html',
-      controller: 'ModalInstanceCtrl',
+      controller: 'LocationModalCtrl',
       size: 'lg'
     })
   }
