@@ -5,8 +5,8 @@
   <p>{{ body }}</p>
 </div>
 <div class="modal-footer">
-  <button ng-show="button1Enabled" class="btn btn-primary" ng-click="btn1Click()">{{ button1 }}</button>
-  <button ng-show="button2Enabled" class="btn btn-warning" ng-click="btn2Click()">{{ button2 }}</button>
+  <button ng-show="button1.enabled" class="btn btn-primary" ng-click="button1.onclick()">{{ button1.label }}</button>
+  <button ng-show="button2.enabled" class="btn btn-warning" ng-click="button2.onclick()">{{ button2.label }}</button>
   <button class="btn btn-default" ng-click="close()">Cancel</button>
 </div>
 
