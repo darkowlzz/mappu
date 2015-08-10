@@ -9,4 +9,18 @@ class Button {
   }
 }
 
-export { Button };
+
+/**
+ * InputBox class.
+ */
+class InputBox {
+  constructor(label, placeholder, enabled = true) {
+    this.label = label;
+    this.enabled = enabled;
+    this.placeholder = placeholder;
+    this.value = null;
+  }
+}
+
+
+export { Button, InputBox };

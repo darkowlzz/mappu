@@ -3,10 +3,20 @@
 </div>
 <div class="modal-body">
   <p>{{ body }}</p>
+
+  <div ng-show="input1.enabled" class="col-md-6">
+    <label>{{ input1.label }}</label>
+    <input type="text" class="form-control" placeholder="{{ input1.placeholder }}" ng-modal="input1.value">
+  </div>
+  <div ng-show="input2.enabled" class="col-md-6">
+    <label>{{ input2.label }}</label>
+    <input type="text" class="form-control" placeholder="{{ input2.placeholder }}" ng-modal="input2.value">
+  </div>
+
 </div>
+
 <div class="modal-footer">
   <button ng-show="button1.enabled" class="btn btn-primary" ng-click="button1.onclick()">{{ button1.label }}</button>
   <button ng-show="button2.enabled" class="btn btn-warning" ng-click="button2.onclick()">{{ button2.label }}</button>
   <button class="btn btn-default" ng-click="close()">Cancel</button>
 </div>
-

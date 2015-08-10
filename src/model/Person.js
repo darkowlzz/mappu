@@ -6,7 +6,6 @@ class PersonController {
     // Initialize the map.
     map.init();
 
-    this.scope.animationsEnabled = true;
     this.signedIn = false;
     this.username = 'anonymous';
 
@@ -28,6 +27,7 @@ class PersonController {
     }
   }
 
+  // Signout of the account
   signOut() {
     console.log('signing out');
     let auth2 = gapi.auth2.getAuthInstance();
@@ -38,6 +38,7 @@ class PersonController {
     });
   }
 
+  // Open the location gathering wizard (modals)
   getLocation() {
     let modalInstance = this.modal.open({
       animation: true,
