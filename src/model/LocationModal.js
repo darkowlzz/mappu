@@ -54,8 +54,18 @@ class ManualLocationModalController {
     this.scope.input1 = new InputBox('Lat', 'Latitude');
     this.scope.input2 = new InputBox('Lng', 'Longitude');
 
-    this.scope.button1 = new Button('Use the coordinates', () => {});
-    this.scope.button2 = new Button('Mark on map', () => {});
+    this.scope.button1 = new Button('Use the coordinates', () => {
+      let lat = Number(this.scope.input1.value),
+          lng = Number(this.scope.input2.value);
+      map.gotoCoord(lat, lng);
+      this.scope.close();
+    });
+
+    this.scope.button2 = new Button('Mark on map', () => {
+      document.getElementById('map').style.cursor = 'crosshair';
+      map.markOnMap();
+      this.scope.close();
+    });
 
     this.scope.close = () => {
       this.modalInstance.dismiss();

@@ -18,7 +18,7 @@ class InputBox {
     this.label = label;
     this.enabled = enabled;
     this.placeholder = placeholder;
-    this.value = null;
+    this.value = undefined;
   }
 }
 
