@@ -23,10 +23,34 @@ function MapService () {
       map.setView([lat, lng], zoom);
     },
 
+    // Go to the given coordinates and open a popup bubble.
+    gotoCoord: function gotoCoord (lat, lng, zoom = 13) {
+      this.goto(lat, lng, zoom);
+      L.marker([lat, lng]).addTo(map).bindPopup('You are here now').
+        openPopup();
+    },
+
     // Automatically locate.
     locate: function locate (zoom = 16) {
-      console.log('locating...');
       map.locate({setView: true, maxZoom: zoom});
+    },
+
+    // Mark a place on map by clicking
+    markOnMap: function markOnMap () {
+      map.on('click', this.onMapClick);
+    },
+
+    // Map click callback
+    onMapClick: function onMapClick (e) {
+      if ((e.latlng.lat > 12.7300) && (e.latlng.lat < 13.1800) &&
+          (e.latlng.lng > 77.3800) && (e.latlng.lng < 77.7500)) {
+        L.marker(e.latlng).addTo(map).bindPopup("You are here now").openPopup();
+        map.setView(e.latlng, 13);
+      } else {
+        alert('This location is out of Bengaluru');
+      }
+      map.off('click', onMapClick);
+      document.getElementById('map').style.cursor = "default";
     }
   }
 }
