@@ -1,7 +1,8 @@
 function MapService () {
-  let map;
+  let map, marker = null;
 
   return {
+
     // Initialize the map.
     init: function init () {
       map = L.map('map', {zoomControl: false}).setView([12.9729, 77.5882], 13);
@@ -25,9 +26,11 @@ function MapService () {
 
     // Go to the given coordinates and open a popup bubble.
     gotoCoord: function gotoCoord (lat, lng, zoom = 13) {
+      this.removeExistingMarker();
       this.goto(lat, lng, zoom);
-      L.marker([lat, lng]).addTo(map).bindPopup('You are here now').
-        openPopup();
+      marker = new L.marker([lat, lng]);
+      map.addLayer(marker);
+      marker.bindPopup('You are here now').openPopup();
     },
 
     // Automatically locate.
@@ -37,20 +40,28 @@ function MapService () {
 
     // Mark a place on map by clicking
     markOnMap: function markOnMap () {
-      map.on('click', this.onMapClick);
+      let that = this;
+      map.on('click', function onMapClick (e) {
+        that.removeExistingMarker();
+        if ((e.latlng.lat > 12.7300) && (e.latlng.lat < 13.1800) &&
+            (e.latlng.lng > 77.3800) && (e.latlng.lng < 77.7500)) {
+          marker = new L.marker(e.latlng);
+          map.addLayer(marker);
+          marker.bindPopup("You are here now").openPopup();
+          map.setView(e.latlng, 13);
+        } else {
+          alert('This location is out of Bengaluru');
+        }
+        map.off('click', onMapClick);
+        document.getElementById('map').style.cursor = "default";
+      } );
     },
 
-    // Map click callback
-    onMapClick: function onMapClick (e) {
-      if ((e.latlng.lat > 12.7300) && (e.latlng.lat < 13.1800) &&
-          (e.latlng.lng > 77.3800) && (e.latlng.lng < 77.7500)) {
-        L.marker(e.latlng).addTo(map).bindPopup("You are here now").openPopup();
-        map.setView(e.latlng, 13);
-      } else {
-        alert('This location is out of Bengaluru');
+    // Remove an existing marker on map.
+    removeExistingMarker: function removeExistingMarker () {
+      if (marker) {
+        map.removeLayer(marker);
       }
-      map.off('click', onMapClick);
-      document.getElementById('map').style.cursor = "default";
     }
   }
 }
