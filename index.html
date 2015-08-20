@@ -17,16 +17,16 @@
     <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
 
   </head>
-  <body ng-controller="personController as person">
+  <body ng-controller="MainCtrl as main">
     <div id="container">
       <div id="map"></div>
 
       <div class="container-fluid fly">
-        <div ng-hide="person.signedIn" class="g-signin2" data-onsuccess="onSignIn"></div>
-        <button ng-show="person.signedIn" class="btn btn-default btn-sm" ng-click="person.signOut();">Sign Out</button>
+        <div ng-hide="user.signedIn" class="g-signin2" data-onsuccess="onSignIn"></div>
+        <button ng-show="user.signedIn" class="btn btn-default btn-sm" ng-click="signOut();">Sign Out</button>
 
-        <div ng-show="person.signedIn">
-          <p>Hello {{person.username}}</p>
+        <div ng-show="user.signedIn">
+          <p>Hello {{user.name}} {{foo}}</p>
         </div>
       </div>
 
@@ -35,15 +35,16 @@
       </div>
 
       <div id="location" data-toggle="tooltip" data-placement="top" title="Tooltip :)">
-        <button class="btn btn-default btn-lg text-align" ng-click="person.getLocation()">
+        <button class="btn btn-default btn-lg text-align" ng-click="main.getLocation()">
           <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
         </button>
       </div>
 
     </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
     <script src="//apis.google.com/js/platform.js" async defer></script>
     <script src="./dist/app.js"> </script>
 
