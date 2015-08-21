@@ -2,7 +2,8 @@ function startUp ($rootScope, Auth, AUTH_EVENTS, Session) {
 
   $rootScope.user = {
     name: null,
-    signedIn: false
+    signedIn: false,
+    loginService: null
   };
 
   // Check if the user is already authenticated
@@ -35,15 +36,18 @@ function startUp ($rootScope, Auth, AUTH_EVENTS, Session) {
     $rootScope.$apply(() => {
       $rootScope.user.signedIn = true;
       $rootScope.user.name = Session.user;
+      $rootScope.user.loginService = Session.loginService;
     });
   }
 
   function showLogin () {
     $rootScope.$apply(() => {
       $rootScope.user.signedIn = false;
-      $rootScope.user.name = Session.user;
+      $rootScope.user.name = null;
+      $rootScope.user.loginService = null;
     });
   }
+
 }
 
 startUp.$inject = ['$rootScope', 'Auth', 'AUTH_EVENTS', 'Session'];
