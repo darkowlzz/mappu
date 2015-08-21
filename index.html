@@ -18,6 +18,7 @@
 
   </head>
   <body ng-controller="MainCtrl as main">
+
     <div id="container">
       <div id="map"></div>
 
@@ -25,8 +26,13 @@
         <div ng-hide="user.signedIn" class="g-signin2" data-onsuccess="onSignIn"></div>
         <button ng-show="user.signedIn" class="btn btn-default btn-sm" ng-click="signOut();">Sign Out</button>
 
+        <div ng-hide="user.signedIn">
+          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+          </fb:login-button>
+        </div>
+
         <div ng-show="user.signedIn">
-          <p>Hello {{user.name}} {{foo}}</p>
+          <p>Hello {{user.name}} | {{user.loginService}}</p>
         </div>
       </div>
 
@@ -42,11 +48,31 @@
 
     </div>
 
+
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.1.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
     <script src="//apis.google.com/js/platform.js" async defer></script>
     <script src="./dist/app.js"> </script>
+
+    <!-- Load Facebook SDK -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '937097739665816',
+          xfbml      : true,
+          version    : 'v2.4'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
 
   </body>
 </html>
